@@ -1,10 +1,10 @@
 package serialization.example.services;
 
-import java.util.Collection;
-import serialization.example.model.User;
+
+import serialization.example.model.UserCollection;
 
 public interface UserSerializer {
 
-	void userSerialize(Collection<User> userCollection);
+	void userSerialize(UserCollection userCollection, String fileName);
 	
 }

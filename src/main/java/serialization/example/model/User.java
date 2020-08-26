@@ -1,10 +1,14 @@
 package serialization.example.model;
 
-public class User {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class User implements Serializable {
+	
 	
 	private int id;
 	private String name;
-	private String eMail;
+	private String email;
 	
 	public int getId() {
 		return id;
@@ -18,13 +22,16 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+	}
 
 }
