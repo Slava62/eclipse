@@ -91,7 +91,7 @@ public class SerializeTests {
 		assertTrue(Files.exists(destinationPath));
 		assertFalse(Files.readAllLines(destinationPath).isEmpty());
 	}
-	/*
+	
 	@Test
 	@DisplayName("CsvUserSerializerTest")
 	public void csvUserSerializerTest() throws IOException {
@@ -103,7 +103,7 @@ public class SerializeTests {
 		assertTrue(Files.exists(destinationPath));
 		assertFalse(Files.readAllLines(destinationPath).isEmpty());
 	}
-	*/
+	
 	@Test
 	@DisplayName("JsonUserDeserializerTest")
 	public void jsonUserDeserializerTest() throws IOException {
@@ -128,7 +128,7 @@ public class SerializeTests {
 		//for(User user: users.getUserCollection()) {
 		//System.out.println(user);}
 	}
-	/*
+	
 	@Test
 	@DisplayName("CsvUserDeserializerTest")
 	public void csvUserDeserializerTest() throws IOException {
@@ -140,7 +140,7 @@ public class SerializeTests {
 		//for(User user: users.getUserCollection()) {
 		//System.out.println(user);}
 	}
-	*/
+	
 	@AfterEach
 	public void tearDown() throws Exception {
 	reader.close();
