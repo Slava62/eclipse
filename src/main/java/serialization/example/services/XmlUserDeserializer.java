@@ -7,11 +7,11 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import serialization.example.model.UserCollection;
 
-public class JsonUserDeserializer implements UserDeserializer {
+public class XmlUserDeserializer implements UserDeserializer {
 
 	@Override
 	public UserCollection userDeserialize(String fileName) {
@@ -20,7 +20,7 @@ public class JsonUserDeserializer implements UserDeserializer {
 		UserCollection userCollection = new UserCollection();
 		try {
 
-			mapper = new JsonMapper();
+			mapper = new XmlMapper();
 
 			userCollection = (UserCollection) mapper.readerFor(UserCollection.class).readValue(file);
 
