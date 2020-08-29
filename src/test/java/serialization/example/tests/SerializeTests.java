@@ -3,6 +3,7 @@ package serialization.example.tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,24 +14,43 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+
 import serialization.example.model.User;
 import serialization.example.model.UserCollection;
+import serialization.example.repository.UserRepository;
 import serialization.example.services.CsvUserDeserializer;
 import serialization.example.services.CsvUserSerializer;
 import serialization.example.services.JsonUserDeserializer;
 import serialization.example.services.JsonUserSerializer;
 import serialization.example.services.UserDeserializer;
 import serialization.example.services.UserSerializer;
+import serialization.example.services.UserService;
 import serialization.example.services.XmlUserDeserializer;
 import serialization.example.services.XmlUserSerializer;
 
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@SpringBootTest
+@Transactional
 public class SerializeTests {
 
 	private UserCollection userCollection;
 	private BufferedReader reader;
 	private FileReader fileReader;
 	private String inputFileName;
+	//@Autowired
+    //UserService userService;
+	
+	 @Autowired
+	 UserRepository userRepository;
 
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -139,6 +159,20 @@ public class SerializeTests {
 				users.getUserCollection().size());
 		//for(User user: users.getUserCollection()) {
 		//System.out.println(user);}
+	}
+	
+	@Test
+	public void userServiceTest() {
+		/* User user = userService.addUser(1L, "Mark", "mark2020@gmail.com");
+	        Assertions.assertNotNull(user);
+
+	        User expected = userService.getById((long) user.getId());
+	        Assertions.assertNotNull(expected);
+	        */
+		User one = userRepository.getOne(1L);
+        List<User> all = userRepository.findAll();
+        Assertions.assertEquals("Mara",one.getName());
+        Assertions.assertEquals(1, all.size());
 	}
 	
 	@AfterEach
