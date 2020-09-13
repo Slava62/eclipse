@@ -32,11 +32,13 @@ public class SerializeTests {
     private BufferedReader reader;
     private FileReader fileReader;
     private String inputFileName;
+    private String defaultPath;
 
 
     @BeforeEach
     public void setUp() throws Exception {
-        inputFileName = ".\\MOCK_DATA.txt";
+        defaultPath="./src/test/resources/";
+        inputFileName = defaultPath + "MOCK_DATA.txt";
         userCollection = new UserCollection();
         try {
             fileReader = new FileReader(inputFileName);
@@ -73,7 +75,7 @@ public class SerializeTests {
     @Test
     @DisplayName("JsonUserSerializerTest")
     public void jsonUserSerializerTest() throws IOException {
-        String jsonFileName = ".\\User_Collection.json";
+        String jsonFileName = defaultPath + "User_Collection.json";
         UserSerializer userSerializer = new JsonUserSerializer();
         userSerializer.userSerialize(userCollection, jsonFileName);
         Path destinationPath = Paths.get(jsonFileName);
@@ -85,7 +87,7 @@ public class SerializeTests {
     @Test
     @DisplayName("XmlUserSerializerTest")
     public void xmlUserSerializerTest() throws IOException {
-        String xmlFileName = ".\\User_Collection.xml";
+        String xmlFileName = defaultPath + "User_Collection.xml";
         UserSerializer userSerializer = new XmlUserSerializer();
         userSerializer.userSerialize(userCollection, xmlFileName);
         Path destinationPath = Paths.get(xmlFileName);
@@ -97,7 +99,7 @@ public class SerializeTests {
     @Test
     @DisplayName("CsvUserSerializerTest")
     public void csvUserSerializerTest() throws IOException {
-        String csvFileName = ".\\User_Collection.csv";
+        String csvFileName = defaultPath + "User_Collection.csv";
         UserSerializer userSerializer = new CsvUserSerializer();
         userSerializer.userSerialize(userCollection, csvFileName);
         Path destinationPath = Paths.get(csvFileName);
@@ -109,7 +111,7 @@ public class SerializeTests {
     @Test
     @DisplayName("JsonUserDeserializerTest")
     public void jsonUserDeserializerTest() throws IOException {
-        String jsonFileName = ".\\User_Collection.json";
+        String jsonFileName = defaultPath + "User_Collection.json";
         UserDeserializer userDeserializer = new JsonUserDeserializer();
         UserCollection users = userDeserializer.userDeserialize(jsonFileName);
         assertEquals(userCollection.getUserCollection().size(),
@@ -122,7 +124,7 @@ public class SerializeTests {
     @Test
     @DisplayName("XmlUserDeserializerTest")
     public void xmlUserDeserializerTest() throws IOException {
-        String xmlFileName = ".\\User_Collection.xml";
+        String xmlFileName = defaultPath + "User_Collection.xml";
         UserDeserializer userDeserializer = new XmlUserDeserializer();
         UserCollection users = userDeserializer.userDeserialize(xmlFileName);
         assertEquals(userCollection.getUserCollection().size(),
@@ -134,7 +136,7 @@ public class SerializeTests {
     @Test
     @DisplayName("CsvUserDeserializerTest")
     public void csvUserDeserializerTest() throws IOException {
-        String csvFileName = ".\\User_Collection.csv";
+        String csvFileName = defaultPath + "User_Collection.csv";
         UserDeserializer userDeserializer = new CsvUserDeserializer();
         UserCollection users = userDeserializer.userDeserialize(csvFileName);
         assertEquals(userCollection.getUserCollection().size(),
